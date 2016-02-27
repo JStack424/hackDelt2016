@@ -136,5 +136,8 @@ div.stockTicker span.quote {
     margin-top:60px;
 }
 #leftHome {
-
+    background-color:##251286;
+}
+#rightHome {
+    background-color:#ca281d;
 }
