@@ -1,4 +1,4 @@
-
+/* footer css */
 .footer-basic-centered{
   background-color: #292c2f;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
@@ -62,6 +62,66 @@
   .footer-basic-centered .footer-links a{
     line-height: 1.8;
   }
+}
+/* css for stock ticker */
+div#currentStanding {
+    color: #000;
+    font-family: Verdana, Arial, Helvetica, San-serif;
+    font-size: 15px;
+    text-align: left;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+div#tickerDiv {
+    background: #c3c1c1 none repeat-x scroll left top;
+    width: 100%;
+    margin: 20px 0 3px;
+}
+.tickerContainer {
+    background: #fff none;
+    border: 1px solid #000;
+    height: 50px;
+    margin: 0 auto;
+    width: 100%;
+}
+.tickerContainer .wrap {
+    width: 97%;
+    left: 10px;
+    top: 10px;
+    overflow: hidden;
+    position: relative;
+    line-height: 30px;
+}
+
+div.stockTicker {
+    font-family: Verdana, Arial, Helvetica, San-serif;
+    font-size: 15px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+div.stockTicker span {
+    margin: 0 10px 0;
+}
+div.stockTicker span.up {
+    color: green;
+    padding-left: 2px;
+}
+div.stockTicker span.down {
+    color: red;
+    margin: 0;
+    padding-left: 10px;
+}
+div.stockTicker span.eq {
+    margin: 0;
+    padding-left: 10px;
+}
+div.stockTicker span.quote {
+    margin: 0;
+    font-weight: bold;
+    padding-left: 10px;
 }
 
 .navlogo {
