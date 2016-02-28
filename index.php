@@ -7,7 +7,11 @@
 ?>
 
     <div class="container mainInfo">
+<<<<<<< HEAD
         <div class='col-md-12 topHome'> 
+=======
+        <div class='col-md-12 topHome'>
+>>>>>>> 376dcef01cc091c18751efadad6f4f534358ca38
             <div id='currentStanding'>
                 <div id="tickerDiv">
                     <div id="ticker" class="stockTicker">
@@ -28,14 +32,22 @@
             </div>
             <div id='trendingTopics' class='col-md-6'>
                 <h2 style='text-align:center;margin-top:10px;'> Trending Topics On The Election </h2>
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> 376dcef01cc091c18751efadad6f4f534358ca38
             </div>
 
             <div id='upcomingEvents' class='col-md-6'>
                 <h2 style='text-align:center;margin-top:10px;'> Upcoming Primary Dates </h2>
                 <?php
+<<<<<<< HEAD
                     include 'dataFunctions.php';
                     printUpcomingCaucus(10);
+=======
+                    include 'electiondates.php';
+>>>>>>> 376dcef01cc091c18751efadad6f4f534358ca38
                 ?>
             </div>
         </div>
