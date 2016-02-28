@@ -109,6 +109,95 @@
         echo '</ul>';
     }
     
+    
+    /**************************************************
+     retrieveNationalData retreives and stores national total data for all candidates and returns an array
+     Input: N/A
+     Output: array indexed by candidate's last name. ["last" => array(info)]
+     */
+    function retrieveNationalData() {
+        //Connect to national results database
+        $url = "http://api.gannett-cdn.com/v1/2016-primary/results/p/summary";
+        $content = file_get_contents($url);
+        //Decode data into array
+        $Data = json_decode($content, true);
+        
+        //make empty candidates array
+        $candidates = array();
+        //for each party
+        foreach($Data['races'] as $race => $raceData) {
+            $party = $raceData['party'];
+            //for each candidate
+            foreach ($raceData['reportingUnits'][0]['candidates'] as $candidate => $info) {
+                $candidates[$info['last']] = array (
+                                                    "first" => $info['first'],
+                                                    "last" => $info['last'],
+                                                    "party" => $info['party'],
+                                                    "totalVotes" => $info['voteCount'],
+                                                    "totalDelegates" => $info['delegateCount'],
+                                                    "votes" => array(),
+                                                    "delegates" => array(),
+                                                    "votePercent" => array()
+                                                    );
+            }
+            
+        }
+        return $candidates;
+    }
+    
+    
+    
+    /**************************************************
+     retrieveElectionData retreives and stores national total data for all candidates and returns an array
+     Input: N/A
+     Output: array indexed by candidate's last name. ["last" => array(info)]
+     */
+    function retrieveElectionData() {
+        include 'ElectionInfo.php';
+        //first collect all national data
+        $candidates = retrieveNationalData();
+        
+        //get index of current caucus
+        $lastCaucus = prevCaucus();
+        $currentIndex = $lastCaucus['index'] + 1;
+        
+        //loop through each past caucus
+        for ($i = 0; $i < $currentIndex; $i++) {
+            //get state abbreviation
+            $state = $Election[$i]['state'];
+            
+            //Connect to state results database
+            $url = "http://api.gannett-cdn.com/v1/2016-primary/results/p/" . $state . "summary";
+            $content = file_get_contents($url);
+            //Decode data into array
+            $Data = json_decode($content, true);
+            
+            //for each party
+            foreach($Data['races'] as $race => $raceData) {
+                //for each candidate
+                foreach($raceData['reportingUnits'][0]['candidates'] as $candidate => $info) {
+                    //get last name
+                    $lastName = $info['last'];
+                    //check if candidate is still running
+                    if (isset($candidates[$lastName])) {
+                        //set all state-specific information
+                        $candidates[$lastName]['votes'][$i] = $info['voteCount'];
+                        $candidates[$lastName]['delegates'][$i] = $info['delegateCount'];
+                        $candidates[$lastName]['votePercent'][$i] = $info['votePct'];
+                        
+                    }
+                }
+            }
+        }
+        //loop through each candidate
+        foreach ($candidates as $current => $info) {
+            //sum votes and delegates from each state
+            $candidates[$current]['totalVotes'] = array_sum($info['votes']);
+            $candidates[$current]['totalDelegates'] = array_sum($info['delegates']);
+        }
+        return $candidates;
+    }
+    
     ?>
 
 

@@ -33,6 +33,8 @@ HackTCNJ
     print_r($Data);
     echo "</pre>";
     
+    
+    
 /*
  For national summary:
     make empty array of candidates

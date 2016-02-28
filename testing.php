@@ -1,3 +1,4 @@
+<?php
 /*
  <span class="quote">Stock Quotes: </span>
  <span class="up"><span class="quote">ABC</span> 1.543 0.2%</span>
@@ -12,3 +13,9 @@
  <span class="eq"><span class="quote">CVN</span> 6.3 0.0%</span>
  <span class="down"><span class="quote">UIT</span> 74.543 -0.321%</span>
 */
+    include 'dataFunctions.php';
+    $candidates = retrieveElectionData();
+    echo "<pre>";
+    print_r($candidates);
+    echo "</pre>";
+?>
