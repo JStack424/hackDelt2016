@@ -140,3 +140,14 @@ iframe {
       padding-right: 40px;
     }
 }
+.upcomingEventsList {
+    margin-top: 20px;
+    padding-left: 30%;
+}
+.upcomingEventsList li {
+    list-style-type: none;
+    line-height: 0.9;
+}
+.demographicsList {
+    list-style-type: none;
+}

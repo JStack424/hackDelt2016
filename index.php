@@ -34,13 +34,14 @@
                 <script type="text/javascript" src="http://elections.huffingtonpost.com/pollster/2016-national-gop-primary/embed.js#!maxdate=2016-02-27&estimate=official" data-width="450" data-height="400"></script>
             </div>-->
         </div>
-        <div id='trendingTopics'>
+        <div id='trendingTopics' class='col-md-6'>
 
         </div>
 
-        <div id='upcomingEvents'>
+        <div id='upcomingEvents' class='col-md-6'>
+            <h3 style='text-align:center;'> Upcoming Primary Dates </h3>
             <?php
-
+                include 'electiondates.php';
             ?>
         </div>
 

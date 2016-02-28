@@ -1,6 +1,6 @@
 <?php
     //Input number of future elections to display on page
-    $numToShow = 15;
+    $numToShow = 5;
     
     //get html page for timeline and load it into a DOMDocument
     $html = file_get_contents('http://www.uspresidentialelectionnews.com/2016-presidential-primary-schedule-calendar');
@@ -23,12 +23,13 @@
         $i++;
         $timeDiff = strtotime(substr($elections[0]->item($i)->nodeValue, 5)) - $today[0];
     }
-    
+    echo "<ul class='upcomingEventsList'>";
     //Iterates through remaining elections to print dates and locations of future caucuses
     for ($j = $i; $j < $i + $numToShow; $j++) {
         //Checks if current index has valid information
         if ($elections[0]->item($j)->nodeValue) {
-            echo $elections[0]->item($j)->nodeValue . ": " . $elections[1]->item($j)->nodeValue . "<br>";
+            echo '<li>' . $elections[0]->item($j)->nodeValue . ": " . $elections[1]->item($j)->nodeValue . "</li><br>";
         }
     }
+    echo '</ul>';
 ?>

@@ -18,7 +18,15 @@
         <h1 class='nameOfCandidate'> <?php echo $row['Name']; ?> </h1>
 
         <div class='demographicInfo'>
+            <h3> Demographics</h3>
+            <ul class='demographicsList'>
+                <?php
+                foreach ($row as $key => $i) {
+                    echo '<li><b>' . $key . ":</b> " . $i . '</li>';
+                }
 
+                ?>
+            </ul>
         </div>
 
         <div class='searchBox'>
@@ -31,6 +39,30 @@
         </div>
 
         <div class='money'>
+            <script>
+            // For a pie chart
+            var myPieChart = new Chart(ctx[0]).Pie(data,options);
+                var data = [
+                    {
+                        value: 300,
+                        color:"#F7464A",
+                        highlight: "#FF5A5E",
+                        label: "Red"
+                    },
+                    {
+                        value: 50,
+                        color: "#46BFBD",
+                        highlight: "#5AD3D1",
+                        label: "Green"
+                    },
+                    {
+                        value: 100,
+                        color: "#FDB45C",
+                        highlight: "#FFC870",
+                        label: "Yellow"
+                    }
+                ]
+            </script>
         </div>
 
     </div><!-- /.container -->
