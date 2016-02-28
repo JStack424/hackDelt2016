@@ -16,11 +16,11 @@
     }
     ?>
 <div class="container mainInfo candidateBg">
-
-<h1 class='nameOfCandidate'> <?php echo $row['Name']; ?> </h1>
+<img src= <?php echo "css/" . substr($name, 0, 3) . ".png"; ?> style="width: 20%; height: auto; margin-left: 40%;"/>
+<h1 class='nameOfCandidate'><strong> <?php echo $row['Name']; ?></strong> </h1>
 
 <div class='demographicInfo col-md-6'>
-<h3 class='text-centered'> Demographics </h3>
+<h3 class='text-centered'> <u>Demographics</u> </h3>
 <ul class='demographicsList'>
 <?php
     foreach ($row as $key => $i) {
@@ -31,7 +31,7 @@
 </div>
 
 <div class='money col-md-6'>
-<h3 class='text-centered'> Financial Contributions </h3>
+<h3 class='text-centered'> <u>Financial Contributions</u> </h3>
 <canvas id="myChart" width="450" height="300" style='display:block;margin: 15px auto;'></canvas>
 </div>
 

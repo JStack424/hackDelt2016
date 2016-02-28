@@ -230,7 +230,11 @@
         foreach($candidates as $candidate => $info) {
             $change = $info['votePercent'][$lastIndex] - $info['totalVotePercent'];
             $change = substr($change, 0, 5);
-            $direction = "up";
+            if ($change > 0) {
+                $direction = "up";
+            } else {
+                $direction = "down";
+            }
             $lastName = $candidate;
             $pct = 100*$change/$info['totalVotePercent'];
             $pct = substr($pct, 0, 5);
