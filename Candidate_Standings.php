@@ -16,23 +16,34 @@ HackTCNJ
 
 <?php
     include 'dataFunctions.php';
+    include 'ElectionInfo.php';
     
     //get state abbreviation based on which Election[x] chronologically
-    $searchState = $Election[0]['state'];
-    echo "$searchState<br>";
-    echo "<br>" . $state . "<br><br>";
+    $lastCaucus = prevCaucus();
+    $currentIndex = $lastCaucus['index'] + 1;
+    $searchState = $Election[$currentIndex]['state'];
+    echo $currentIndex . ": " . $searchState . "<br>";
     //Connect to database
     $url = "http://api.gannett-cdn.com/v1/2016-primary/results/p/" . $searchState . "summary";
-    $content = file_get_contents($url) . "";
+    $content = file_get_contents($url);
     
     //Decode data into array
     $Data = json_decode($content, true);
+    echo "<pre>";
+    print_r($Data);
+    echo "</pre>";
     
+/*
+ For national summary:
+    make empty array of candidates
+    set key = last name, value = [first, last, party, delegates = array, votes = array, totalDelegates, totalVotes]
+ For election i=1-current (loop):
+    candidates['last']['delegates'][i] = delegates
+    candidates['last']['votes'][i] = votes
+ - current
+*/
     
-    printUpcomingCaucus(10);
-    
-    ?>
-
+?>
 
 <h2>Republican Candidates</h2>
 <?php
