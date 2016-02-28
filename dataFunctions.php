@@ -227,8 +227,9 @@
     function formatTickerData($candidates) { //<span class="up"><span class="quote">ABC</span> 1.543 0.2%</span>
         //get index of last caucus
         $lastIndex = prevCaucus()['index'];
+        $twoIndex = $lastIndex - 1;
         foreach($candidates as $candidate => $info) {
-            $change = $info['votePercent'][$lastIndex] - $info['totalVotePercent'];
+            $change = $info['votePercent'][$twoIndex] - $info['votePercent'][$lastIndex];
             $change = substr($change, 0, 5);
             if ($change > 0) {
                 $direction = "up";
@@ -237,10 +238,34 @@
             }
             $lastName = $candidate;
             $pct = 100*$change/$info['totalVotePercent'];
-            $pct = substr($pct, 0, 5);
-            echo "<span class=\"" . $direction . "\"><span class=\"quote\">" . $lastName . "</span> " . $change . " " . $pct . "%</span>";
+            $electoral = $info['totalDelegates'];
+            echo "<span class=\"" . $direction . "\"><span class=\"quote\">" . $lastName . "</span> " . $change . "%, " . $electoral . "</span>";
         }
-        
+    }
+    
+    function verticalAxis() {
+        $last = prevCaucus();
+        $candidates = retrieveElectionData();
+        $output = "[";
+        foreach ($candidates as $candidate => $info) {
+            $output .= $info['votes'][$last['index']] . ", ";
+        }
+        $length = strlen($output);
+        $output = substr($output, 0, $length - 2);
+        $output .= "]";
+        echo $output;
+    }
+    
+    function horizontalAxis() {
+        $candidates = retrieveElectionData();
+        $output = "[";
+        foreach ($candidates as $candidate => $info) {
+            $output .= "\"" . $info['last'] . "\", ";
+        }
+        $length = strlen($output);
+        $output = substr($output, 0, $length - 2);
+        $output .= "]";
+        echo $output;
     }
     ?>
 

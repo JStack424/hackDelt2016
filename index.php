@@ -8,11 +8,11 @@
 
     <div class="container mainInfo">
         <div class='col-md-12 topHome'>
-            <h1 style='text-align:center;margin-top:15px;'> Election Overview </h1>
-            <div id='currentStanding'>
-                <div id="tickerDiv">
+            <h1 style='text-align:center; margin-top:15px;'> <u>Election Overview</u> </h1>
+            <p style='text-align:center; margin-top:15px;'> <strong>Candidate</strong> (Change in popular vote), (Total electoral votes)</p>
+            <div id='currentStanding' style="margin-top: -20px;">
+                <div id="tickerDiv" style="border: solid 1px black;">
                     <div id="ticker" class="stockTicker">
-                        <span class="quote">Stock Quotes: </span>
                         <?php
                             include 'dataFunctions.php';
                             $candidates = retrieveElectionData();
@@ -22,8 +22,8 @@
                 </div>
             </div>
             <div id='trendingTopics' class='col-md-6'>
-                <h2 style='text-align:center;margin-top:10px;'> Trending Topics On The Election </h2>
-                
+                <h2 style='text-align:center;margin-top:10px;'> Latest Caucus Results (by number of votes) </h2>
+                <canvas id="myChart" width="500" height="350">  </canvas>
             </div>
 
             <div id='upcomingEvents' class='col-md-6'>
@@ -58,6 +58,9 @@
                 <a href='candidateTemplate.php?name=Ted%20Cruz'> <li>
                     Ted Cruz
                 </li> </a>
+                <a href='candidateTemplate.php?name=Ben%20Carson'> <li>
+                    Ben Carson
+                </li> </a>
                 <a href='candidateTemplate.php?name=John%20Kasich'> <li>
                     John Kasich
                 </li> </a>
@@ -75,10 +78,29 @@
     <script src='stockTicker.js'> </script>
     <script type="text/javascript">
         $(function() {
-            $("#ticker").jStockTicker({interval: 40});
+            $("#ticker").jStockTicker({interval: 20});
         });
     </script>
 
+    <script type="text/javascript">
+        var ctx = $("#myChart").get(0).getContext("2d");
+        var myNewChart = new Chart(ctx);
+        var data = {
+        labels: <?php horizontalAxis(); ?>,
+            datasets: [
+                {
+                label: "First",
+                fillColor: "rgba(220,220,220,0.5)",
+                strokeColor: "rgba(220,220,220,0.8)",
+                highlightFill: "rgba(220,220,220,0.75)",
+                highlightStroke: "rgba(220,220,220,1)",
+                data: <?php verticalAxis(); ?>
+                }
+            ]
+        };
 
+
+        var myBarChart = new Chart(ctx).Bar(data);
+    </script>
 </body>
 </html>
