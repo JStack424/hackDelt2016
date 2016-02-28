@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                    <img class="navlogo" src="http://cdn1.theodysseyonline.com/files/2016/02/19/635915016528302803417530905_Politics.jpg">
+                    <h3 style='color:#9d9d9d;padding:0;margin-top: 10px;'> Politifact </h3>
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->

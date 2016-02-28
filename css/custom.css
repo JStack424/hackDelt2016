@@ -6,61 +6,21 @@
   width: 100%;
   text-align: center;
   font: normal 18px sans-serif;
-
   padding: 10px;
   margin-top: 30px;
 }
-
-.footer-basic-centered .footer-company-motto{
-  color:  #8d9093;
-  font-size: 24px;
-  margin: 0;
-  text-decoration: none;
-}
-
 .footer-basic-centered .footer-company-name{
   color:  #8f9296;
   font-size: 14px;
   margin: 0;
 }
-
-.footer-basic-centered .footer-links{
-  list-style: none;
-  font-weight: bold;
-  color:  #ffffff;
-  padding: 8px 0 23px;
-  margin: 0;
-}
-
-.footer-basic-centered .footer-links a{
-  display:inline-block;
-  text-decoration: none;
-  color: inherit;
-}
-
 /* If you don't want the footer to be responsive, remove these media queries */
-
 @media (max-width: 600px) {
-
   .footer-basic-centered{
     padding: 10px;
   }
-
-  .footer-basic-centered .footer-company-motto{
-    font-size: 18px;
-  }
-
   .footer-basic-centered .footer-company-name{
     font-size: 12px;
-  }
-
-  .footer-basic-centered .footer-links{
-    font-size: 14px;
-    padding: 15px 0 20px;
-  }
-
-  .footer-basic-centered .footer-links a{
-    line-height: 1.8;
   }
 }
 /* css for stock ticker */
@@ -93,7 +53,6 @@ div#tickerDiv {
     position: relative;
     line-height: 30px;
 }
-
 div.stockTicker {
     font-family: Verdana, Arial, Helvetica, San-serif;
     font-size: 15px;
@@ -123,21 +82,61 @@ div.stockTicker span.quote {
     font-weight: bold;
     padding-left: 10px;
 }
-
 .navlogo {
     height:60px;
     padding:10px;
 }
-
 .nameOfCandidate {
     text-align: center;
 }
 .mainInfo {
     margin-top:60px;
+    margin-left:auto;
+    margin-right:auto;
 }
 #leftHome {
-    background-color:##251286;
+    background-color:rgba(37,18,134,0.9);
 }
 #rightHome {
-    background-color:#ca281d;
+    background-color:rgba(202,40,29,0.9);
+}
+.partyDiv {
+    height: 400px;
+}
+.partyImg {
+    width: 100px;
+    height: 100px;
+    filter:drop-shadow(8px 8px 10px black);
+    -webkit-filter: drop-shadow(8px 8px 10px black);
+    display:block;
+    margin: 25px auto;
+}
+iframe {
+    display: block;
+    margin: 20px auto;
+}
+.Candidates {
+    list-style-type: none;
+    text-align: center;
+}
+.Candidates li{
+  list-style: none;
+  font-weight: bold;
+  color:  inherit;
+    font-size: 35px;
+}
+.Candidates a {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.left a:hover li{
+  color: rgba(202,40,29,0.9);
+}
+.right a:hover li{
+  color: rgba(37,18,134,0.9);
+}
+@media (min-width: 991px) {
+  .Candidates li{
+      padding-right: 40px;
+    }
 }

@@ -5,7 +5,6 @@
 <?php include 'nav.php'; ?>
 
     <div class="container mainInfo">
-
         <div id='currentStanding'>
             <div id="tickerDiv">
                 <div id="ticker" class="stockTicker">
@@ -23,22 +22,58 @@
                     <span class="down"><span class="quote">UIT</span> 74.543 -0.321%</span>
                 </div>
             </div>
+
+            <!-- These two charts were pulled from
+            http://elections.huffingtonpost.com/pollster/2016-national-gop-primary
+            and http://elections.huffingtonpost.com/pollster/2016-national-democratic-primary
+
+            <div class='col-md-6'>
+                <script type="text/javascript" src="http://elections.huffingtonpost.com/pollster/2016-national-democratic-primary/embed.js#!maxdate=2016-02-27&estimate=official" data-width="450" data-height="400"></script>
+            </div>
+            <div class='col-md-6'>
+                <script type="text/javascript" src="http://elections.huffingtonpost.com/pollster/2016-national-gop-primary/embed.js#!maxdate=2016-02-27&estimate=official" data-width="450" data-height="400"></script>
+            </div>-->
         </div>
         <div id='trendingTopics'>
 
         </div>
 
         <div id='upcomingEvents'>
+            <?php
 
+            ?>
         </div>
 
-        <div id='whichParty'>
-            <div id='leftHome'>
-            </div>
-
-            <div id='rightHome'>
-            </div>
+        <div id='leftHome' class='col-sm-6 partyDiv'>
+            <img src='http://img.photobucket.com/albums/v53/mike_kwiatkowski/DemocratDonkey1.png' class='partyImg'>
+            <ul class='Candidates left'>
+                <a href='candidateTemplate.php?name=Hillary%20Clinton'> <li>
+                    Hillary Clinton
+                </li> </a>
+                <a href='candidateTemplate.php?name=Bernie%20Sanders'> <li>
+                    Bernie Sanders
+                </li> </a>
+            </ul>
         </div>
+
+        <div id='rightHome' class='col-md-6 partyDiv'>
+            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Republicanlogo.svg/2000px-Republicanlogo.svg.png' class='partyImg'>
+            <ul class='Candidates right'>
+                <a href='candidateTemplate.php?name=Donald%20Trump'> <li>
+                    Donald Trump
+                </li> </a>
+                <a href='candidateTemplate.php?name=Marco%20Rubio'> <li>
+                    Marco Rubio
+                </li> </a>
+                <a href='candidateTemplate.php?name=Ted%20Cruz'> <li>
+                    Ted Cruz
+                </li> </a>
+                <a href='candidateTemplate.php?name=John%20Kasich'> <li>
+                    John Kasich
+                </li> </a>
+             </ul>
+        </div>
+
         <div id='compareCandidates'>
         </div>
 
@@ -49,7 +84,7 @@
       <script src='stockTicker.js'> </script>
     <script type="text/javascript">
         $(function() {
-            $("#ticker").jStockTicker({interval: 45});
+            $("#ticker").jStockTicker({interval: 65});
         });
     </script>
 
