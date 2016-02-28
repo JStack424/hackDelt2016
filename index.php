@@ -7,22 +7,17 @@
 ?>
 
     <div class="container mainInfo">
-        <div class='col-md-12 topHome'> 
+        <div class='col-md-12 topHome'>
+            <h1 style='text-align:center;margin-top:15px;'> Election Overview </h1>
             <div id='currentStanding'>
                 <div id="tickerDiv">
                     <div id="ticker" class="stockTicker">
                         <span class="quote">Stock Quotes: </span>
-                        <span class="up"><span class="quote">ABC</span> 1.543 0.2%</span>
-                        <span class="down"><span class="quote">SDF</span> 12.543 -0.74%</span>
-                        <span class="up"><span class="quote">JDF</span> 34.543 5.2%</span>
-                        <span class="up"><span class="quote">ERA</span> 123.234 1.2%</span>
-                        <span class="down"><span class="quote">DFF</span> 20.543 -5.2%</span>
-                        <span class="eq"><span class="quote">CBX</span> 523.234 0.0%</span>
-                        <span class="down"><span class="quote">IZF</span> 89.65 -3.4%</span>
-                        <span class="up"><span class="quote">KJG</span> 456.64 0.318%</span>
-                        <span class="up"><span class="quote">QWE</span> 6413.123 0.012%</span>
-                        <span class="eq"><span class="quote">CVN</span> 6.3 0.0%</span>
-                        <span class="down"><span class="quote">UIT</span> 74.543 -0.321%</span>
+                        <?php
+                            include 'dataFunctions.php';
+                            $candidates = retrieveElectionData();
+                            formatTickerData($candidates);
+                        ?>
                     </div>
                 </div>
             </div>
@@ -34,7 +29,6 @@
             <div id='upcomingEvents' class='col-md-6'>
                 <h2 style='text-align:center;margin-top:10px;'> Upcoming Primary Dates </h2>
                 <?php
-                    include 'dataFunctions.php';
                     printUpcomingCaucus(10);
                 ?>
             </div>
@@ -78,10 +72,10 @@
       <!-- includes footer-->
       <?php include'footer.php'; ?>
 
-      <script src='stockTicker.js'> </script>
+    <script src='stockTicker.js'> </script>
     <script type="text/javascript">
         $(function() {
-            $("#ticker").jStockTicker({interval: 65});
+            $("#ticker").jStockTicker({interval: 40});
         });
     </script>
 

@@ -129,16 +129,20 @@
             $party = $raceData['party'];
             //for each candidate
             foreach ($raceData['reportingUnits'][0]['candidates'] as $candidate => $info) {
-                $candidates[$info['last']] = array (
+                if ($info['last'] != "Others") {
+                    $candidates[$info['last']] = array (
                                                     "first" => $info['first'],
                                                     "last" => $info['last'],
                                                     "party" => $info['party'],
                                                     "totalVotes" => $info['voteCount'],
                                                     "totalDelegates" => $info['delegateCount'],
+                                                    "totalVotePercent" => 0,
+                                                    "totalDelegatePercent" => 0,
                                                     "votes" => array(),
                                                     "delegates" => array(),
                                                     "votePercent" => array()
                                                     );
+                }
             }
             
         }
@@ -161,6 +165,10 @@
         $lastCaucus = prevCaucus();
         $currentIndex = $lastCaucus['index'] + 1;
         
+        //keep track of total overall votes and delegates
+        $overallVotes = array("R" => 0, "D" => 0);
+        $overallDelegates = array("R" => 0, "D" => 0);
+        
         //loop through each past caucus
         for ($i = 0; $i < $currentIndex; $i++) {
             //get state abbreviation
@@ -174,6 +182,7 @@
             
             //for each party
             foreach($Data['races'] as $race => $raceData) {
+                $party = $raceData['party'];
                 //for each candidate
                 foreach($raceData['reportingUnits'][0]['candidates'] as $candidate => $info) {
                     //get last name
@@ -185,19 +194,50 @@
                         $candidates[$lastName]['delegates'][$i] = $info['delegateCount'];
                         $candidates[$lastName]['votePercent'][$i] = $info['votePct'];
                         
+                        //increment overall counters
+                        $overallVotes[$party] = $overallVotes[$party] + $info['voteCount'];
+                        $overallDelegates[$party] = $overallDelegates[$party] + $info['delegateCount'];
                     }
                 }
             }
         }
+        
+        
         //loop through each candidate
         foreach ($candidates as $current => $info) {
             //sum votes and delegates from each state
-            $candidates[$current]['totalVotes'] = array_sum($info['votes']);
-            $candidates[$current]['totalDelegates'] = array_sum($info['delegates']);
+            $candidates[$info['last']]['totalVotes'] = array_sum($info['votes']);
+            $candidates[$info['last']]['totalDelegates'] = array_sum($info['delegates']);
+            
+            //calculate overall averages
+            $party = $info['party'];
+            $candidates[$info['last']]['totalVotePercent'] = 100*$candidates[$info['last']]['totalVotes']/$overallVotes[$party];
+            $candidates[$info['last']]['totalDelegatePercent'] = 100*$candidates[$info['last']]['totalDelegates']/$overallDelegates[$party];
         }
+        
         return $candidates;
     }
     
+    
+    /**************************************************
+     formatTickerData compares the last caucus with the overall
+     Input: N/A
+     Output: echo '<span class="up"><span class="quote">ABC</span> 1.543 0.2%</span>'
+     */
+    function formatTickerData($candidates) { //<span class="up"><span class="quote">ABC</span> 1.543 0.2%</span>
+        //get index of last caucus
+        $lastIndex = prevCaucus()['index'];
+        foreach($candidates as $candidate => $info) {
+            $change = $info['votePercent'][$lastIndex] - $info['totalVotePercent'];
+            $change = substr($change, 0, 5);
+            $direction = "up";
+            $lastName = $candidate;
+            $pct = 100*$change/$info['totalVotePercent'];
+            $pct = substr($pct, 0, 5);
+            echo "<span class=\"" . $direction . "\"><span class=\"quote\">" . $lastName . "</span> " . $change . " " . $pct . "%</span>";
+        }
+        
+    }
     ?>
 
 
