@@ -3,10 +3,19 @@
   </head>
   <body>
 <?php include 'nav.php'; ?>
+      <?php
+      $name = $_GET["name"];
 
-    <div class="container mainInfo">
+      include 'config.php';
+    //$row = array();
+    $sql = "SELECT `Id`, `Name`, `Age`, `Ethnicity`, `Religion`, `Gender`, `Education`, `Political Experience` FROM `Demographics` WHERE Name='" . $name . "'";
+    if ($result = mysqli_query($conn, $sql)) {
+        $row = mysqli_fetch_assoc($result);
+    }
+      ?>
+      <div class="container mainInfo">
 
-        <h1 class='nameOfCandidate'> Name Of Candidate </h1>
+        <h1 class='nameOfCandidate'> <?php echo $row['Name']; ?> </h1>
 
         <div class='demographicInfo'>
 
