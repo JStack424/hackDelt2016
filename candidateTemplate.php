@@ -39,21 +39,20 @@ $name = $_GET["name"];
 
         <div class='searchBox col-md-12'>
             <h4> We allow you to search through social media accounts based on the following issues! Please check off issues that you are interested about surrounding <?php echo $name;?> </h4>
-            <form id='stuff2'>
+            <form id='form'>
                 <?php 
                 for ($k = 0; $k < 3;$k++) {
-                    echo "<div class='col-md-4' style='padding-left: 5px;padding-right:5px;'>";
+                    echo "<div class='col-md-4' style='padding-left: 5px;padding-right:5px;text-align:center;'>";
                     for ($i=(count($potentialIssues)/3 * $k);$i < ((count($potentialIssues)/3) * ($k+1));$i++) {
-                            echo "<div class='col-md-4' style='margin: 0;'> <label style='font-weight:300;margin: 0 auto;'> <input type='checkbox' value='yes' name='" . $potentialIssues[$i] . "'> " . $potentialIssues[$i] . "</label> </div>";
+                            echo "<div class='col-md-4' style='margin: 0;'> <label style='font-weight:300;margin: 0 auto;'> <input type='checkbox' value='" . str_replace(" ", "", $potentialIssues[$i]) . "' name='" . str_replace(" ", "", $potentialIssues[$i]) . "'> " . $potentialIssues[$i] . "</label> </div>";
                     }
                     echo '</div>';
                 }
                 echo "<input id='".$name."' type='hidden' name='name' value='".$name."'/>"
                 ?>
-                <button class='form-control' id='stuff' name='stuff'> Search Social Media </button>
+                <button class='form-control' id='stuff' name='form'> Search Social Media </button>
             </form>
-            
-            <script type="text/javascript"  src="http://platform.twitter.com/widgets.js"></script>
+
 
             <div class='resultsFromSearch'>
                 <div class="col-md-4">  <!--first column -->
@@ -123,7 +122,7 @@ $name = $_GET["name"];
       
       <script> 
       $('#stuff').click(function(e) {
-          e.preventDefault();
+            e.preventDefault();
                  // Call the getData function
             getData();            
  
@@ -135,7 +134,7 @@ $name = $_GET["name"];
               type: "POST",
               url: "twitter/TwitterQuery.php",
               dataType: "json",
-              data: $('#stuff').serialize(),
+              data: $('#form').serialize(),
               success: response
             });
           }
@@ -143,9 +142,12 @@ $name = $_GET["name"];
           // This function runs once we get our data from PHP
           function response(json)
           {
+              console.log(json);
             $("#candidate").append(json[0]);
             $("#press").append(json[1]); 
             $("#people").append(json[2]);
+
+            $.getScript("http://platform.twitter.com/widgets.js", function () {});
           }
           });
       </script>
