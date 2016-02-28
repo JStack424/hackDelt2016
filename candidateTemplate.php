@@ -1,10 +1,13 @@
+<?php 
+$potentialIssues = array('Abortion','Marriage','Planned Parenthood','Guns','Privacy','Drugs','Social Security','Obamacare','Wage','Taxes','Immigration','Education','Wealth Inequality','Terrorism','Isis','Global Warming');
+$name = $_GET["name"];
+?>
 <!-- includes basic html info, meta info, link to bootstrap css, link to custom css -->
 <?php include 'head.php'; ?>
   </head>
   <body>
 <?php include 'nav.php'; ?>
       <?php
-      $name = $_GET["name"];
 
       include 'config.php';
     //$row = array();
@@ -34,8 +37,36 @@
             <canvas id="myChart" width="450" height="300" style='display:block;margin: 15px auto;'></canvas>
         </div>
 
-        <div class='searchBox'>
+        <div class='searchBox col-md-12'>
+            <h4> We allow you to search through social media accounts based on the following issues! Please check off issues that you are interested about surrounding <?php echo $name;?> </h4>
+            <form id='stuff2'>
+                <?php 
+                for ($k = 0; $k < 3;$k++) {
+                    echo "<div class='col-md-4' style='padding-left: 5px;padding-right:5px;'>";
+                    for ($i=(count($potentialIssues)/3 * $k);$i < ((count($potentialIssues)/3) * ($k+1));$i++) {
+                            echo "<div class='col-md-4' style='margin: 0;'> <label style='font-weight:300;margin: 0 auto;'> <input type='checkbox' value='yes' name='" . $potentialIssues[$i] . "'> " . $potentialIssues[$i] . "</label> </div>";
+                    }
+                    echo '</div>';
+                }
+                echo "<input id='".$name."' type='hidden' name='name' value='".$name."'/>"
+                ?>
+                <button class='form-control' id='stuff' name='stuff'> Search Social Media </button>
+            </form>
+            
+            <script type="text/javascript"  src="http://platform.twitter.com/widgets.js"></script>
+
             <div class='resultsFromSearch'>
+                <div class="col-md-4">  <!--first column -->
+                    <h2 id='candidate'> Candidate Account </h2>
+                </div>
+
+                <div class="col-md-4">                    
+                    <h2 id='press'>Press Coverage</h2> 
+                </div>
+
+                <div class="col-md-4">                    
+                    <h2 id='people'> Buzz Among People </h2>    
+                </div>
             </div>
         </div>
 
@@ -88,8 +119,36 @@
                     echo 'var myPieChart = new Chart(ctx).Pie(data);
 ';
                     ?>
-
             </script>
+      
+      <script> 
+      $('#stuff').click(function(e) {
+          e.preventDefault();
+                 // Call the getData function
+            getData();            
+ 
+          // The function that makes the request to our PHP script
+          function getData()
+          {
+            // Ajax call
+            $.ajax({
+              type: "POST",
+              url: "twitter/TwitterQuery.php",
+              dataType: "json",
+              data: $('#stuff').serialize(),
+              success: response
+            });
+          }
+ 
+          // This function runs once we get our data from PHP
+          function response(json)
+          {
+            $("#candidate").append(json[0]);
+            $("#press").append(json[1]); 
+            $("#people").append(json[2]);
+          }
+          });
+      </script>
 
 </body>
 </html>
