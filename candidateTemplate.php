@@ -36,7 +36,7 @@
 </div>
 
 <div class='searchBox col-md-12'>
-<h4> We allow you to search through social media accounts based on the following issues! Please check off issues that you are interested about surrounding <?php echo $name;?> </h4>
+<h4> Use the box below to search twitter for recent keywords involving <?php echo $name;?> </h4>
 <form id='form'>
 <?php
     /*for ($k = 0; $k < 3;$k++) {
@@ -46,10 +46,10 @@
      }
      echo '</div>';
      }*/
-    echo "<input id='text type='text' name='text'>";
+    echo "<input id='text type='text' name='text' style='width: 50%; height: 30px; float: left;'>";
     echo "<input id='".$name."' type='hidden' name='name' value='".$name."'/>"
     ?>
-<button class='form-control' id='stuff' name='form' style="width: 50%;"> Search Social Media </button>
+<button class='form-control' id='stuff' name='form' style="width: 20%; height: 30px; float: left;"> Search Twitter </button>
 </form>
 
 
