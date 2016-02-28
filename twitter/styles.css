@@ -1,23 +1,38 @@
-#container {
-    width: 960px;
-    margin: 0 auto;
+ <style>
+
+.container {
+    position: relative;
+    width: 300px;
+    color:blue;
+}
+.container div {
+    height: 300px;
 }
 
-#primary {
-    float: left;
-    width: 240px;
-}
+.column-left {
+    width: 27%;
+    padding-right: 2em;
+    left: 5em;
+    position: absolute;
+    text-align: center;
 
-#content {
-    float: left;
-    width: 480px;
 }
+.column-center {
+    width: 27%;
+    margin-left: 33%;
+    padding-left: 2em;
+    padding-right: 2em;
+    position: absolute;
+    text-align: center;
 
-#secondary {
-    float: left;
-    width: 240px;
-}
 
-#footer {
-    clear: both;
 }
+.column-right {
+    width: 27%;
+    right: 2em;
+    position: absolute;
+    padding-right: 2em;
+    text-align: center;
+
+}
+    </style>
