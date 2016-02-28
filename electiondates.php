@@ -1,6 +1,6 @@
 <?php
     //Input number of future elections to display on page
-    $numToShow = 15;
+    $numToShow = 10;
     
     //get html page for timeline and load it into a DOMDocument
     $html = file_get_contents('http://www.uspresidentialelectionnews.com/2016-presidential-primary-schedule-calendar');
