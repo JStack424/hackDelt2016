@@ -15,19 +15,22 @@ HackTCNJ
 <body>
 
 <?php
+    include 'dataFunctions.php';
     
-    //get state abbreviation based on which caucus (numbered in chronological order)
-    //$state = $stateSelector[0];
-    print_r($stateSelector[0]);
-    echo $state . "<br><br>";
+    //get state abbreviation based on which Election[x] chronologically
+    $searchState = $Election[0]['state'];
+    echo "$searchState<br>";
+    echo "<br>" . $state . "<br><br>";
     //Connect to database
-    $url = "http://api.gannett-cdn.com/v1/2016-primary/results/p/" . $state . "summary";
+    $url = "http://api.gannett-cdn.com/v1/2016-primary/results/p/" . $searchState . "summary";
     $content = file_get_contents($url) . "";
     
-    //Decode data into array and print
+    //Decode data into array
     $Data = json_decode($content, true);
-    $output = $Data;
-    print_r($output);
+    
+    
+    printUpcomingCaucus(10);
+    
     ?>
 
 
