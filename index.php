@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div id='leftHome' class='col-sm-6 partyDiv'>
+        <div id='leftHome' class='col-sm-6 partyDiv' style="width: 50%; float: left;">
             <img src='http://img.photobucket.com/albums/v53/mike_kwiatkowski/DemocratDonkey1.png' class='partyImg'>
             <ul class='Candidates left'>
                 <a href='candidateTemplate.php?name=Hillary%20Clinton'> <li>
@@ -46,7 +46,7 @@
             </ul>
         </div>
 
-        <div id='rightHome' class='col-md-6 partyDiv'>
+        <div id='rightHome' class='col-md-6 partyDiv' style="width: 50%; float: left;">
             <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Republicanlogo.svg/2000px-Republicanlogo.svg.png' class='partyImg'>
             <ul class='Candidates right'>
                 <a href='candidateTemplate.php?name=Donald%20Trump'> <li>
