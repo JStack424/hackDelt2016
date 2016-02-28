@@ -39,7 +39,15 @@
         </div>
 
         <div class='money'>
-            <script>
+
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+
+    </div><!-- /.container -->
+
+    <!-- includes footer and bootsrap js and jquery-->
+    <?php include'footer.php'; ?>
+                  <script>
             // For a pie chart
             var myPieChart = new Chart(ctx[0]).Pie(data,options);
                 var data = [
@@ -63,12 +71,6 @@
                     }
                 ]
             </script>
-        </div>
-
-    </div><!-- /.container -->
-
-    <!-- includes footer and bootsrap js and jquery-->
-    <?php include'footer.php'; ?>
 
 </body>
 </html>

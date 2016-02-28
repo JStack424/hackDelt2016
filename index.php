@@ -80,14 +80,16 @@
 
     </div><!-- /.container -->
 
-      <!-- includes footer and bootsrap js and jquery-->
+      <!-- includes footer-->
       <?php include'footer.php'; ?>
+
       <script src='stockTicker.js'> </script>
     <script type="text/javascript">
         $(function() {
             $("#ticker").jStockTicker({interval: 65});
         });
     </script>
+
 
 </body>
 </html>
