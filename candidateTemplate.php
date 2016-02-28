@@ -41,13 +41,14 @@ $name = $_GET["name"];
             <h4> We allow you to search through social media accounts based on the following issues! Please check off issues that you are interested about surrounding <?php echo $name;?> </h4>
             <form id='form'>
                 <?php 
-                for ($k = 0; $k < 3;$k++) {
+                /*for ($k = 0; $k < 3;$k++) {
                     echo "<div class='col-md-4' style='padding-left: 5px;padding-right:5px;text-align:center;'>";
-                    for ($i=(count($potentialIssues)/3 * $k);$i < ((count($potentialIssues)/3) * ($k+1));$i++) {
+                    for ($i=(count($potentialIssues)/3 * $k);$i < (((count($potentialIssues)/3) * ($k+1))-1);$i++) {
                             echo "<div class='col-md-4' style='margin: 0;'> <label style='font-weight:300;margin: 0 auto;'> <input type='checkbox' value='" . str_replace(" ", "", $potentialIssues[$i]) . "' name='" . str_replace(" ", "", $potentialIssues[$i]) . "'> " . $potentialIssues[$i] . "</label> </div>";
                     }
                     echo '</div>';
-                }
+                }*/
+                echo "<input id='text type='text' name='text'>";
                 echo "<input id='".$name."' type='hidden' name='name' value='".$name."'/>"
                 ?>
                 <button class='form-control' id='stuff' name='form'> Search Social Media </button>
@@ -143,9 +144,9 @@ $name = $_GET["name"];
           function response(json)
           {
               console.log(json);
-            $("#candidate").append(json[0]);
-            $("#press").append(json[1]); 
-            $("#people").append(json[2]);
+            $("#candidate").append(json[0]).fadeIn(1000);
+            $("#press").append(json[1]).fadeIn(1000);
+            $("#people").append(json[2]).fadeIn(1000);
 
             $.getScript("http://platform.twitter.com/widgets.js", function () {});
           }
