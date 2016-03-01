@@ -62,7 +62,7 @@
         do {
             $caucusNum++;
             $timeDiff = strtotime(substr($Election[$caucusNum]['date'], 5)) - $currentDate[0];
-        } while ($timeDiff < 0);
+        } while ($timeDiff < -21*60*60); //Counts a caucus as completed at 9:00pm
         //caucusNum is the index for the next caucus
         
         //stores the index of the most recent caucus
@@ -85,6 +85,8 @@
         
         //Gets the most recent caucus as [("index" => caucusNumber), ("date" => date), ("state" => state)]
         $last = prevCaucus();
+        //Gets today's date
+        $currentDate = getdate();
         
         $endIndex= $last['index'] + 1 + $numToShow;
         if ($endIndex >= count($Election)) {
@@ -101,7 +103,17 @@
         echo "<ul class='upcomingEventsList'>";
         //Iterates through future elections and prints: "Date: Location"
         for ($index = $last['index'] + 1; $index < $endIndex; $index++) {
-            echo '<li>' . $Election[$index]['date'] . ": " . $allElections[$index]['state'] . "</li><br>";
+            $timeDiff = strtotime(substr($Election[$caucusNum]['date'], 5)) - $currentDate[0];
+            
+            $output = "<li>";
+            //Prints TODAY if caucus is today
+            if ($timeDiff < -21*60*60) {
+                $output .= "TODAY";
+            } else { //Otherwise, prints date of caucus
+                $output .= $Election[$index]['date'];
+            }
+            $output .= ": " . $allElections[$index]['state'] . "</li><br>";
+            echo $output;
         }
         if ($tooLong) {
             echo "<li> No more caucuses.</li>";
